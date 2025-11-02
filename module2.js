@@ -540,35 +540,67 @@ const rawApiData = [
 
 // Video (9)
 
-const users = [
-    { id: 101, name: "Alice" },
-    { id: 102, name: "Bob" },
-    { id: 103, name: "Charlie" },
-];
+// const users = [
+//     { id: 101, name: "Alice" },
+//     { id: 102, name: "Bob" },
+//     { id: 103, name: "Charlie" },
+// ];
 
-const posts = [
-    { id: 1, userId: 102, title: "My first post" },
-    { id: 2, userId: 101, title: "React Hooks" },
-    { id: 3, userId: 101, title: "Data Structures" },
-    { id: 4, userId: 103, title: "CSS is fun" },
-    { id: 5, userId: 102, title: "Node.js streams" },
-];
+// const posts = [
+//     { id: 1, userId: 102, title: "My first post" },
+//     { id: 2, userId: 101, title: "React Hooks" },
+//     { id: 3, userId: 101, title: "Data Structures" },
+//     { id: 4, userId: 103, title: "CSS is fun" },
+//     { id: 5, userId: 102, title: "Node.js streams" },
+// ];
 
 // TODO create hashtable of posts
-const postByUserId = posts.reduce((table, post) => {
-    const { userId } = post;
-    if (!table[userId]) {
-        table[userId] = [];
+// const postByUserId = posts.reduce((table, post) => {
+//     const { userId } = post;
+//     if (!table[userId]) {
+//         table[userId] = [];
+//     }
+//     table[userId].push(post)
+//     return table
+// }, {})
+
+// const userWithPost = users.map((user) => {
+//     return {
+//         ...user,
+//         posts: postByUserId[user.id] || []
+//     }
+// })
+
+// console.log(JSON.stringify(userWithPost));
+
+// Video (10)
+// 01
+
+const events = [
+    { timestamp: "2025-10-22T10:01:00Z", type: "click" },
+    { timestamp: "2025-10-22T10:05:00Z", type: "scroll" },
+    { timestamp: "2025-10-22T10:14:00Z", type: "click" },
+    { timestamp: "2025-10-22T10:31:00Z", type: "click" },
+    { timestamp: "2025-10-22T10:45:00Z", type: "scroll" },
+    { timestamp: "2025-10-22T11:02:00Z", type: "click" },
+];
+
+const INTERVAL = 30 * 60 * 1000; // 30 mins in ms
+const getBinningTimeStamp = (timestamp) => {
+    const date = new Date(timestamp);
+    const floredData = Math.floor(date.getTime() / INTERVAL) * INTERVAL;
+    return new Date(floredData).toISOString();
+};
+
+const binnedData = events.reduce((acc, event) => {
+    const bin = getBinningTimeStamp(event.timestamp);
+
+    if (!acc[bin]) {
+        acc[bin] = { total: 0 };
     }
-    table[userId].push(post)
-    return table
+    acc[bin].total = acc[bin].total + 1;
+
+    return acc;
 }, {})
 
-const userWithPost = users.map((user) => {
-    return {
-        ...user,
-        posts: postByUserId[user.id] || []
-    }
-})
-
-console.log(JSON.stringify(userWithPost));
+console.log(binnedData);

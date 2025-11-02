@@ -344,8 +344,98 @@ const rawApiData = [
 //TODO Slice => first 3 (top3)
 //TODO Map => transform object shap to {name: "Name"}
 
-const topElectronicsProducts = rawApiData.filter(item => item.category === "Electronics").sort((a, b) => a.rating - b.rating).slice(0, 3).map((item) => {
-    return { name: item.productName }
-});
+// const topElectronicsProducts = rawApiData.filter(item => item.category === "Electronics").sort((a, b) => a.rating - b.rating).slice(0, 3).map((item) => {
+//     return { name: item.productName }
+// });
 
-console.log(topElectronicsProducts);
+// console.log(topElectronicsProducts);
+
+// Video3
+// 01
+//* Sort
+// const numbers = [40, 100, 1, 5, 25, 10];
+// const fruits = ["Banana", "apple", "Cherry", "Water melon"];
+
+// const sortedNumber = numbers.sort((a, b) => b - a)
+// fruits.sort((a, b) => a.localeCompare(b));
+
+// console.log(fruits);
+
+//* Nested array flat
+// 02
+// const arr = [1, 2, 3, [4, 5], [5, 6, 9, [7, 8, 9,]]];
+// const flatArr = arr.flat(2 or anything)
+// const flatArr = arr.flat(Infinity)
+
+// console.log(flatArr);
+
+// 03
+// const tagsFromPosts = [
+//     ["javascript", "react", "css"],
+//     ["node", "express"],
+//     ["css", "html", "react"],
+// ];
+
+// const filterTags = [...new Set(tagsFromPosts.flat(Infinity))];
+// console.log(filterTags);
+
+// Video 4
+// 01
+// const numbers = [1, 5, 5, 11, 69, 9, 3, 1];
+// const hasEvenNumber = numbers.some((number) => number % 2 === 0)
+// const hasOddNumber = numbers.some((number) => number % 2 !== 0)
+// console.log(hasEvenNumber);
+// console.log(hasOddNumber);
+
+// 02
+// const currentUserRoles = ["user", "editor","admin"];
+// const featureAccessRoles = ["admin", "manager"];
+
+// const canAccess = currentUserRoles.some((role) => featureAccessRoles.includes(role))
+// console.log(canAccess);
+
+// 03
+// const arr = Array.from({length: 5}).fill(0)
+// const arr = Array.from({length: 5}).fill(null)
+// const arr = Array.from({length: 5}).fill("")
+// const arr = Array.from({length: 5},(_,i) => i)
+// const arr = Array.from([1, 2, 3, 5, 8, 9], (value, i) => value * value)
+// console.log(arr);
+
+// 03
+// const range = (start, stop, step) => Array.from({ length: Math.ceil(stop - start) / step }, (_, i) => start + i * step)
+
+// console.log(range(1, 20, 3));
+
+// Video 5
+// 01
+// const cartItems = [
+//     { id: "p-001", name: "Daraz Laptop Bag", price: 1500, quantity: 1 },
+//     { id: "p-002", name: "Walton USB-C Cable", price: 350, quantity: 2 },
+//     { id: "p-003", name: "Aarong Kurta", price: 2200, quantity: 1 }
+// ]
+
+// const subtotal = cartItems.reduce((subtotal, product) => {
+//     console.log(subtotal,product);
+//     return subtotal + product.price * product.quantity;
+// }, 0)
+// console.log(subtotal);
+
+// 02
+const players = [
+    { name: "Jamal Bhuyan", score: 88 },
+    { name: "Sheikh Morsalin", score: 81 },
+    { name: "Rakib Hossain", score: 95 },
+    { name: "Topu Barman", score: 91 },
+    { name: "Shohel Rana", score: 72 }
+]
+
+const bestScorer = players.reduce((bestPlayer, player) => {
+    console.log(bestPlayer, player);
+    if (bestPlayer.score > player.score) {
+        return bestPlayer;
+    }
+    return player;
+}, players[0])
+
+console.log(bestScorer);
